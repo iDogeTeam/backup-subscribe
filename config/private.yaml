@@ -4,22 +4,22 @@ nodes:
   - host: 1.1.1.1
     port: 1111
     password: 1.1.1.1
-    encryption: aes
-    protocal: (optional)
-    protocal_param: (optional)
+    encryption: aes-256-cfb
+    protocal: none
+    protocal_param: ' '
     obfs: plain
-    obfs_param: (optional)
+    obfs_param: ' '
     note: (optional)
     udp: 0
     uot: 0
   - host: 2.2.2.2
     port: 1111
     password: 1.1.1.1
-    encryption: aes
-    protocal: (optional)
-    protocal_param: (optional)
+    encryption: aes-256-cfb
+    protocal: none
+    protocal_param: ' '
     obfs: plain
-    obfs_param: (optional)
+    obfs_param: ' '
     note: (optional)
     udp: 0
     uot: 0

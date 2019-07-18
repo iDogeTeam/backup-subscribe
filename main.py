@@ -17,11 +17,11 @@ def buildURL(node, group):
         protocal=node['protocal'],
         method=node['encryption'],
         obfs=node['obfs'],
-        password=base64.urlsafe_b64encode(node['password'].encode()),
-        obfs_param=base64.urlsafe_b64encode(node['obfs_param'].encode()),
-        protocal_param=base64.urlsafe_b64encode(node['protocal_param'].encode()),
-        note=base64.urlsafe_b64encode(node['note'].encode()),
-        group=base64.urlsafe_b64encode(group.encode()),
+        password=base64.urlsafe_b64encode(node['password'].encode()).decode(),
+        obfs_param=base64.urlsafe_b64encode(node['obfs_param'].encode()).decode(),
+        protocal_param=base64.urlsafe_b64encode(node['protocal_param'].encode()).decode(),
+        note=base64.urlsafe_b64encode(node['note'].encode()).decode(),
+        group=base64.urlsafe_b64encode(group.encode()).decode(),
         udp=node['udp'],
         uot=node['uot']
     )

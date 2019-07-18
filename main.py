@@ -6,6 +6,9 @@ import errno
 config_path = './config'
 site_path = './site'
 
+def base64encode(str):
+    return base64.urlsafe_b64encode(str.encode()).decode().replace("=","")
+
 def checkNode(obj):
     return obj['host'] != None and obj['password'] != None and obj['encryption'] != None and obj['obfs'] != None
 
@@ -17,16 +20,16 @@ def buildURL(node, group):
         protocal=node['protocal'],
         method=node['encryption'],
         obfs=node['obfs'],
-        password=base64.urlsafe_b64encode(node['password'].encode()).decode(),
-        obfs_param=base64.urlsafe_b64encode(node['obfs_param'].encode()).decode(),
-        protocal_param=base64.urlsafe_b64encode(node['protocal_param'].encode()).decode(),
-        note=base64.urlsafe_b64encode(node['note'].encode()).decode(),
-        group=base64.urlsafe_b64encode(group.encode()).decode(),
+        password=base64encode(node['password']),
+        obfs_param=base64encode(node['obfs_param']),
+        protocal_param=base64encode(node['protocal_param']),
+        note=base64encode(node['note']),
+        group=base64encode(group),
         udp=node['udp'],
         uot=node['uot']
     )
 
-    return 'ssr://{}'.format(base64.urlsafe_b64encode(str.encode()).decode())
+    return 'ssr://{}'.format(base64encode(str))
 
 def buildCollection(nodes, group):
     ls = []
@@ -36,7 +39,7 @@ def buildCollection(nodes, group):
             else:
                 print('Err: Missing Params')
 
-    return base64.urlsafe_b64encode(' '.join(ls).encode()).decode()
+    return base64encode(' '.join(ls))
 
 # main
 if not os.path.exists(site_path):

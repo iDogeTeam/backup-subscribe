@@ -1,25 +1,25 @@
 public: true
 name: example
 nodes: 
-  - host: 1.1.1.1
-    port: 1111
-    password: 1.1.1.1
-    encryption: aes
-    protocal: (optional)
-    protocal_param: (optional)
-    obfs: plain
-    obfs_param: (optional)
-    note: (optional)
+  - host: 127.0.0.1
+    port: 1234
+    password: aaabbb
+    encryption: aes-128-cfb
+    protocal: auth_aes128_md5
+    protocal_param: ''
+    obfs: tls1.2_ticket_auth
+    obfs_param: breakwa11.moe
+    note: 测试中文
     udp: 0
     uot: 0
-  - host: 2.2.2.2
-    port: 1111
-    password: 1.1.1.1
-    encryption: aes
-    protocal: (optional)
-    protocal_param: (optional)
-    obfs: plain
-    obfs_param: (optional)
-    note: (optional)
+  - host: 127.0.0.1
+    port: 1234
+    password: aaabbb
+    encryption: aes-128-cfb
+    protocal: auth_aes128_md5
+    protocal_param: ''
+    obfs: tls1.2_ticket_auth
+    obfs_param: breakwa11.moe
+    note: ''
     udp: 0
     uot: 0

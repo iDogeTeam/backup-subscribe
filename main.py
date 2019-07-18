@@ -1,19 +1,19 @@
 import yaml
 import os
 import base64
-import errno
+import urllib.parse
 
 config_path = './config'
 site_path = './site'
 
 def base64encode(str):
-    return base64.urlsafe_b64encode(str.encode()).decode().replace("=","")
+    return base64.urlsafe_b64encode(str.encode()).decode() #.replace("=","") don't remove padding
 
 def checkNode(obj):
     return obj['host'] != None and obj['password'] != None and obj['encryption'] != None and obj['obfs'] != None
 
 # ssr://base64(host:port:protocol:method:obfs:base64pass/?obfsparam=base64param&protoparam=base64param&remarks=base64remarks&group=base64group&udpport=0&uot=0)
-def buildURL(node, group):
+def buildSSRURL(node, group):
     str = '{host}:{port}:{protocal}:{method}:{obfs}:{password}/?obfsparam={obfs_param}&protoparam={protocal_param}&remarks={note}&group={group}&udpport={udp}&uot={uot}'.format(
         host=node['host'],
         port=node['port'],
@@ -31,11 +31,29 @@ def buildURL(node, group):
 
     return 'ssr://{}'.format(base64encode(str))
 
+# ss://YmYtY2ZiOnRlc3Q@192.168.100.1:8888/?plugin=url-encoded-plugin-argument-value&unsupported-arguments=should-be-ignored#Dummy+profile+name
+def buildSSURL(node, group):
+    if node['protocal'] == 'plain':
+        return 'ss://{info}@{host}:{port}/#{note}'.format(
+            info=base64encode('{method}:{password}'.format(
+                password=node['password']
+                method=node['encryption']
+            ))
+            host=node['host']
+            note=urllib.parse.quote(node['note'])
+        )
+    else: 
+        return ''
+
 def buildCollection(nodes, group):
-    ls = []
+    ssr = []
+    # ss = []
     for node in nodes:
             if (checkNode(node)):
-                ls.append(buildURL(node, group))
+                ls.append(buildSSRURL(node, group))
+                # ss_str = buildSSURL(node, group)
+                # if ss_str != '':
+                #     ss.append(ss_str)
             else:
                 print('Err: Missing Params')
 

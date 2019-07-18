@@ -21,8 +21,11 @@ pip3 install -r requirements.txt
 python3 main.py
 ```
 
-### Note
+## Note
 
-Plz keep the config folder in gitignore or the whole repo private. We leave it alone as an example.
+- Plz keep the config folder in gitignore or the whole repo private. We leave it alone as an example.
 
-Recommended using with Gitlab and Pages
+- Recommended using with Gitlab and Pages (Now Support Automatic Cert)
+
+- https://github.com/shadowsocksr-backup/shadowsocks-rss/wiki/SSR-QRcode-scheme
+    - Don't remove padding
